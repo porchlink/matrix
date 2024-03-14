@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <a href="{{ url_for('add_client') }}">+ Add New Client</a>
+    <br><br>
+    {% include '_clients.html' %}
+{% endblock %}

@@ -1,0 +1,27 @@
+<table cellpadding="5">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>New Ad</th>
+        <th>Delete</th>
+    </tr>
+{% for c in clients %}
+<tr>
+<td><a href="{{ url_for('edit_client', id=c.id) }}">{{ c.name }}</a></td><td><a href="mailto:"{{ c.email }}>{{ c.email }}</a></td>
+<td align="center">
+    <a href="{{ url_for('add_ad', client_id=c.id) }}"><i class="bi bi-plus"></i>
+    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="green" class="bi bi-plus" viewBox="0 0 16 16">
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+    </svg></a>
+</td>
+<td align="center">
+<a href="{{ url_for('delete_client', id=c.id) }}"
+        onclick="return confirm('Do you want to permanently delete client?');" title="Delete Client">
+        <i class="bi bi-x"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="red" class="bi bi-x" viewBox="0 0 16 16">
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+              </svg></a>
+    </td>
+</tr>
+{% endfor %}
+</table>

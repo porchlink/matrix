@@ -1,0 +1,27 @@
+
+<table>
+    <tr>
+        <th align="left">Community</th>
+        <th align="left">Ad Text</th>
+        <th align="Center">Start Date</th>
+        <th align="Center">End Date</th>
+        <th align="Center">Copy</th>
+        <th align="Center">Delete</th>
+    </tr>
+    {% for ad in clientads %}
+        <tr valign="top">
+            <td align="left">{{ad.community}}</td>
+            <td align="left" width="40%">{{ad.text}}</td>
+            <td align="center">{{ad.start_date.strftime('%Y-%m')}}</td>
+            <td align="center">{{ad.end_date.strftime('%Y-%m')}}</td>
+            <td align="center">
+                <a href="{{url_for('add_ad', client_id=ad.client_id, community=ad.community, ad_text=ad.text, s_date=ad.start_date, e_date=ad.end_date)}}"><B>C</B></a>
+            </td>
+            <td align="center">
+                <a href="{{ url_for('delete_ad', id=ad.id) }}"
+                onclick="return confirm('Do you want to permanently delete ad?');" title="Delete Ad">
+                <i class="material-icons" style="font-size:16px"><B>X</B></i></a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>

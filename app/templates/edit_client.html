@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit Client</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name }}<br>
+            {% for error in form.name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email }}<br>
+            {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <a href="{{ url_for('add_client_note', id=client_id) }}">+ Note</a>
+    <h4>Notes:</h4>
+    {% for clientnote in clientnotes %}
+        {% include '_client_notes.html' %}
+    {% endfor %}
+    <a href="{{ url_for('add_ad', client_id=client_id) }}">+ New Ad</a>
+    <h4>Ads:</h4>
+        {% include 'ads/_client_ads.html' %}
+{% endblock %}

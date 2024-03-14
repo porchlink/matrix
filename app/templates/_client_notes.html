@@ -1,0 +1,12 @@
+<table>
+    <tr valign="top">
+        <td>{{clientnote.timestamp.strftime('%Y-%m-%d')}}</td>
+        <td>&emsp;&emsp;</td>
+        <td>{{clientnote.body }}</td>
+        <td>
+            <a href="{{ url_for('delete_note', id=clientnote.id) }}"
+            onclick="return confirm('Do you want to permanently delete note?');" title="Delete Note">
+            <i class="material-icons" style="font-size:16px">delete</i></a>
+        </td>
+    </tr>
+</table>

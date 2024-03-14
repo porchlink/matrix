@@ -1,0 +1,32 @@
+.button {
+    border: none;
+    color: green;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  .del_button {
+    border: none;
+    color: red;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 200;
+    background: none;
+  }
+  .add_button {
+    border: none;
+    color: green;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    cursor: pointer;
+    font-weight: 200;
+    background: none;
+  }

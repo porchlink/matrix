@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.community.label }}<br>
+            {{ form.community }}<br>
+            {% for error in form.community.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.text.label }}<br>
+            {{ form.text(cols=32, rows=4) }}<br>
+            {% for error in form.text.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.start_month.label }}<br>
+            {{ form.start_month }}<br>
+            {% for error in form.start_month.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.start_year.label }}<br>
+            {{ form.start_year }}<br>
+            {% for error in form.start_year.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.end_month.label }}<br>
+            {{ form.end_month }}<br>
+            {% for error in form.end_montherrors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.end_year.label }}<br>
+            {{ form.end_year }}<br>
+            {% for error in form.end_year.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
