@@ -12,7 +12,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 @app.route('/')
 @app.route('/index')
-@login_required
+#@login_required
 def index():
     page = request.args.get('page', 1, type=int)
     query = sa.select(Client).order_by(Client.created_ts.desc())
