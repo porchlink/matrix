@@ -19,12 +19,10 @@ class User(UserMixin, db.Model):
     password_hash: so.Mapped[Optional[str]] = so.mapped_column(sa.String(256))
 
     def set_password(self, password):
-        self.password_hash = password
-        #self.password_hash = generate_password_hash(password, 'passlib')
+        self.password_hash = generate_password_hash(password, 'passlib')
 
     def check_password(self, password):
-        return password#check_password_hash(self.password_hash, password)
-        #return check_password_hash(self.password_hash, password)
+        return check_password_hash(self.password_hash, password)
     
     def __repr__(self):
         return '<User {}>'.format(self.username)
