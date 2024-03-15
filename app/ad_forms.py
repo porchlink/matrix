@@ -8,7 +8,7 @@ from dateutil.relativedelta import relativedelta
 next_month = datetime.now()+relativedelta(months=+1)
 
 class AddAdForm(FlaskForm):
-    community_query = Community.query.all()#['Stonegate','Stroh Ranch']#
+    community_query = ['Stonegate','Stroh Ranch']#Community.query.all()#
     communities = []
     for c in community_query:
         communities.append(c)

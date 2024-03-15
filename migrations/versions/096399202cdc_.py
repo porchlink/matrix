@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 6e97f5d2604d
+Revision ID: 096399202cdc
 Revises: 
-Create Date: 2024-03-13 10:07:02.228417
+Create Date: 2024-03-15 16:34:49.678181
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6e97f5d2604d'
+revision = '096399202cdc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -47,6 +47,24 @@ def upgrade():
         batch_op.create_index(batch_op.f('ix_user_email'), ['email'], unique=True)
         batch_op.create_index(batch_op.f('ix_user_username'), ['username'], unique=True)
 
+    op.create_table('ads',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('timestamp', sa.DateTime(), nullable=False),
+    sa.Column('client_id', sa.Integer(), nullable=False),
+    sa.Column('type', sa.String(length=6), nullable=False),
+    sa.Column('community', sa.String(length=24), nullable=False),
+    sa.Column('text', sa.String(), nullable=True),
+    sa.Column('note', sa.String(), nullable=True),
+    sa.Column('start_date', sa.DateTime(), nullable=False),
+    sa.Column('end_date', sa.DateTime(), nullable=False),
+    sa.Column('monthly_freq', sa.Float(), nullable=False),
+    sa.ForeignKeyConstraint(['client_id'], ['client.id'], ondelete='CASCADE'),
+    sa.PrimaryKeyConstraint('id')
+    )
+    with op.batch_alter_table('ads', schema=None) as batch_op:
+        batch_op.create_index(batch_op.f('ix_ads_client_id'), ['client_id'], unique=False)
+        batch_op.create_index(batch_op.f('ix_ads_timestamp'), ['timestamp'], unique=False)
+
     op.create_table('client_notes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('body', sa.String(length=140), nullable=False),
@@ -69,6 +87,11 @@ def downgrade():
         batch_op.drop_index(batch_op.f('ix_client_notes_client_id'))
 
     op.drop_table('client_notes')
+    with op.batch_alter_table('ads', schema=None) as batch_op:
+        batch_op.drop_index(batch_op.f('ix_ads_timestamp'))
+        batch_op.drop_index(batch_op.f('ix_ads_client_id'))
+
+    op.drop_table('ads')
     with op.batch_alter_table('user', schema=None) as batch_op:
         batch_op.drop_index(batch_op.f('ix_user_username'))
         batch_op.drop_index(batch_op.f('ix_user_email'))
