@@ -10,7 +10,7 @@ from urllib.parse import urlsplit
 
 @app.route('/')
 @app.route('/index')
-#@login_required
+@login_required
 def index():
     page = request.args.get('page', 1, type=int)
     query = sa.select(Client).order_by(Client.created_ts.desc())
@@ -30,9 +30,10 @@ def login():
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
-        next_page = request.args.get('next')
-        if not next_page or urlsplit(next_page).netloc != '':
-            next_page = url_for('index')
+        next_page = url_for('index')
+        # next_page = request.args.get('next')
+        # if not next_page or urlsplit(next_page).netloc != '':
+        #     next_page = url_for('index')
         return redirect(next_page)
     return render_template('login.html', title='Sign In', form=form)
 
