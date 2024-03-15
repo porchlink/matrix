@@ -8,6 +8,8 @@ from app.models.user_models import User
 from app.models.client_models import Client
 from urllib.parse import urlsplit
 
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
 @app.route('/')
 @app.route('/index')
 @login_required
