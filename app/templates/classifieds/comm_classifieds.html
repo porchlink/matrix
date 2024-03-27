@@ -4,10 +4,8 @@
 {% if current_user.is_anonymous %}
 <a class="nav-link" href="{{ url_for('login') }}">Please Log in</a>
 {% else %}
-    <a href="{{ url_for('add_client') }}">+ Add New Client</a>
+    <h2>{{ community }}</h2>
     <br><br>
-    {% include '_clients.html' %}
-     <!--<p>{{ inv }}</p>-->
     {% for i in inv %}
         <p>{{ i['description'] }}</p>
     {% endfor %}

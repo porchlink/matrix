@@ -8,17 +8,18 @@ from app.models.user_models import User
 from app.models.client_models import Client, ClientNotes
 from app.models.ad_models import Ad
 from urllib.parse import urlsplit
-
+from app.freshbooks.classifieds import *
 
 @app.route('/')
 @app.route('/clients')
 @login_required
 def clients():
     page = request.args.get('page', 1, type=int)
+    inv_ = get_classifieds()#['invoices']
     query = sa.select(Client).order_by(Client.created_ts.desc())
     clients = db.paginate(query, page=page,
                         per_page=10, error_out=False)
-    return render_template('clients.html', title='Home', clients=clients)
+    return render_template('clients.html', title='Home', clients=clients, inv=inv_)
 
 @app.route('/add_client', methods=['GET', 'POST'])
 @login_required

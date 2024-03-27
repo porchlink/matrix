@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Classified Ads</h2>
+Select Community:
+<br><br>
+    <table>
+    {% for c in communities %}
+    <tr>
+    <td><a href="{{ url_for('comm_classifieds', community=c.name) }}">{{ c.name }}</a></td><td>&emsp;&emsp;</td><td><a href="mailto:"{{ c.email }}>{{ c.email }}</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

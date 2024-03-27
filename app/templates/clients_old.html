@@ -8,8 +8,9 @@
     <br><br>
     {% include '_clients.html' %}
      <!--<p>{{ inv }}</p>-->
-    {% for i in inv %}
-        <p>{{ i['description'] }}</p>
+    {% for i in inv['invoices'] %}
+        <p>{{ i }}</p>
+    
     {% endfor %}
 {% endif %}
 {% endblock %}
